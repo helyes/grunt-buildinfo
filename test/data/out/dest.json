@@ -1,1 +1,1 @@
-{"foo":"moo","bar":[1,2,3],"noz":{"yuu":"gork","boo":false}}
+{"foo":"moo","origin":"https://github.com/helyes/grunt-buildinfo.git","bar":[1,2,3],"noz":{"yuu":"gork","boo":false}}

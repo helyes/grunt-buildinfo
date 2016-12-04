@@ -1,3 +1,4 @@
+/*eslint no-console: "warn"*/
 var describe = require('mocha').describe;
 var it       = require('mocha').it;
 var expect   = require('chai').expect;
@@ -7,7 +8,7 @@ var grunt    = require('grunt');
 var dataDir = 'test/data/';
 var destFile    = dataDir + 'out/dest.json';
 var sampleA = dataDir + 'sample-a.json';
-var sampleB = dataDir + 'sample-b.json';
+//var sampleB = dataDir + 'sample-b.json';
 
 describe('buildinfo', function(){
 
@@ -31,7 +32,7 @@ describe('buildinfo', function(){
             var aContent;
             var content = grunt.file.readJSON(destFile);
 
-            expect(grunt.file.exists(sampleA).to.be.equal(true);
+            expect(grunt.file.exists(sampleA)).to.be.equal(true);
             expect(grunt.file.read(sampleA).length).to.be.above(0);
 
             aContent = grunt.file.readJSON(sampleA);
@@ -53,7 +54,7 @@ describe('buildinfo', function(){
             var bContent;
             var content = grunt.file.readJSON(destFile);
 
-            expect(grunt.file.exists(sampleA).to.be.equal(true);
+            expect(grunt.file.exists(sampleA)).to.be.equal(true);
             expect(grunt.file.read(sampleA).length).to.be.above(0);
 
             bContent = grunt.file.readJSON(sampleA);

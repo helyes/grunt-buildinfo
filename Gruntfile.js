@@ -5,14 +5,16 @@ module.exports = function(grunt) {
         eslint: {
             all: [
                 'Gruntfile.js',
-                'tasks/*.js'
+                'tasks/*.js',
+                'test/*.js'
             ]
         },
 
         'buildinfo': {
             test: {
                 options: {
-                    foo : true
+                    foo : true,
+                    origin : 'https://github.com/helyes/grunt-buildinfo.git'
                 },
                 files: {
                     'test/data/out/dest.json' : ['test/data/*.json']
@@ -31,6 +33,7 @@ module.exports = function(grunt) {
             options: {
                 reporter: 'spec'
             },
+            src: ['test/buildinfo_spec.js'],
             test: {
                 src: ['test/buildinfo_spec.js']
             }
@@ -55,12 +58,12 @@ module.exports = function(grunt) {
     grunt.loadTasks('tasks');
 
 
-    grunt.registerTask('test', 'Run tests', [
+    grunt.registerTask('test', [
         'clean:test',
+        'eslint',
         'buildinfo:test',
-        'mochaTest:test'
+        'mochaTest'
     ]);
 
     grunt.registerTask('devtest', ['watch:test']);
 };
-
