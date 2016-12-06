@@ -1,65 +1,41 @@
 /*eslint no-unused-vars: ["error", { "varsIgnorePattern": "done" }]*/
 
-/**
- * Extend a source object with a destination object
- * @param {Object} source - the reference will be modified
- * @param {Object} dest   - the object to assign to the source
- * @returns {Object} the source reference
- */
-var extend = function extend(source, dest){
-    if(typeof Object.assign === 'function'){
-        return Object.assign(source, dest);
-    } else {
-        return require('util')._extend(source, dest);
-    }
-};
-
 module.exports = function(grunt) {
 
+    var os = require('os');
 
 
     /**
      * Register the Grunt task buildinfo
      */
     grunt.registerMultiTask('buildinfo', 'Populates build details into grunt.buildinfo config', function() {
-        var options = this.options();
+
         var done    = this.async();
-        var count   = 0;
 
-        grunt.log.ok('Options: ', options);
+        //var options = this.options();
+        //grunt.log.debug('Options: ', options);
+        //grunt.log.debug('Buildinfo1: ', grunt.config.get('buildinfo'));
 
-        // Placeholder task
-        // merge everything into the destination
-        // the options and the source files JSON
-
-        this.files.forEach(function(file){
-
-            var content = extend({}, options);
-            var dest = file.dest;
-
-            grunt.log.debug('base content %j', content);
-
-            file.src.forEach(function(source){
-
-                grunt.log.debug('adding %s', source);
-                extend(content, grunt.file.readJSON(source));
-                grunt.log.debug('content is now %j', content);
-            });
-
-            grunt.log.debug('writing to %s', dest);
-
-            grunt.file.write(dest, JSON.stringify(content));
-
-            if(grunt.file.exists(dest)){
-
-                grunt.verbose.write('%s created', dest);
-                count++;
-            } else {
-                grunt.fail.warn('Unable to write %s', dest);
+        var buildProperties = {
+            buildinfo : {
+                by : process.env.USER,
+                host: os.hostname(),
+                at: '<%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %>',
+                os: {
+                    type: os.type(),
+                    release: os.release(),
+                    arch: os.arch()
+                }
             }
-        });
-        if(count > 0){
-            grunt.log.ok('%s %s created', count, (count > 1 ? 'files' : 'file'));
-        }
+        };
+
+        grunt.config.merge(buildProperties);
+        //grunt.log.debug('Buildinfo: ', grunt.config.get('buildinfo'));
+
+
+        grunt.log.ok('Done. Buildinfo extended');
+        //     grunt.fail.warn('Oooops');
+
+        done();
     });
 };

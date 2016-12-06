@@ -3,7 +3,14 @@
   "version": "0.1.0",
   "description": "Populates build details into grunt.buildinfo config",
   "author": "Andras Helyes <helyesa@gmail.com>",
-  "keywords": ["gruntplugin","grunt","buildinfo","build","info","git"],
+  "keywords": [
+    "gruntplugin",
+    "grunt",
+    "buildinfo",
+    "build",
+    "info",
+    "git"
+  ],
   "license": "MIT",
   "main": "Gruntfile.js",
   "engines": {
@@ -21,7 +28,6 @@
   "scripts": {
     "test": "grunt test"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/helyes/grunt-buildinfo.git"
@@ -29,6 +35,5 @@
   "bugs": {
     "url": "https://github.com/helyes/grunt-buildinfo/issues"
   },
-  "homepage": "https://github.com/helyes/grunt-buildinfo#readme"
-
+  "homepage": "https://github.com/helyes/grunt-buildinfo#readme"  
 }

@@ -13,11 +13,7 @@ module.exports = function(grunt) {
         'buildinfo': {
             test: {
                 options: {
-                    foo : true,
                     origin : 'https://github.com/helyes/grunt-buildinfo.git'
-                },
-                files: {
-                    'test/data/out/dest.json' : ['test/data/*.json']
                 }
             }
         },
@@ -33,12 +29,10 @@ module.exports = function(grunt) {
             options: {
                 reporter: 'spec'
             },
-            src: ['test/buildinfo_spec.js'],
             test: {
-                src: ['test/buildinfo_spec.js']
+                src: ['test/*spec.js']
             }
         },
-
         watch : {
             test: {
                 files : ['tasks/*.js', 'test/*_spec.js'],
@@ -62,7 +56,7 @@ module.exports = function(grunt) {
         'clean:test',
         'eslint',
         'buildinfo:test',
-        'mochaTest'
+        'mochaTest:test'
     ]);
 
     grunt.registerTask('devtest', ['watch:test']);
